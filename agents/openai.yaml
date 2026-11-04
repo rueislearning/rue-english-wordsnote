@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rue English Wordsnote"
+  short_description: "日常英汉互译积累词汇，连接 Obsidian 单词本并进行场景表达练习"
+  default_prompt: "使用 $rue-english-wordsnote 记录我询问的英语表达，并根据单词本安排场景练习。"

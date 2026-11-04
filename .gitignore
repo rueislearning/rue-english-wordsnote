@@ -1,0 +1,15 @@
+# Private machine configuration and learning data
+config.local.json
+词条/
+练习/
+
+# Internal development material and generated archives
+/deployment/
+/docs/
+/evals/
+/dist/
+
+# Local system files
+.DS_Store
+__pycache__/
+*.pyc
