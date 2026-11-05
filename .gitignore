@@ -2,6 +2,7 @@
 config.local.json
 词条/
 练习/
+近义词/
 
 # Internal development material and generated archives
 /deployment/

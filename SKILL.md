@@ -1,6 +1,6 @@
 ---
 name: rue-english-wordsnote
-description: Use when a learner asks English-to-Chinese or Chinese-to-English vocabulary questions, asks to sync vocabulary to an Obsidian notebook, requests word-frequency statistics, or practices saved English words and phrases. 不用于其他语言翻译或将整篇英文自动当作生词；用户明确只翻译不记录时不暂存。
+description: Use when a learner asks English-to-Chinese or Chinese-to-English vocabulary questions, compares English synonyms, asks to sync vocabulary to an Obsidian notebook, requests word-frequency statistics, or practices saved English words and phrases. 不用于其他语言翻译或将整篇英文自动当作生词；用户明确只翻译不记录时不暂存。
 ---
 
 # Rue English Wordsnote
@@ -22,7 +22,7 @@ description: Use when a learner asks English-to-Chinese or Chinese-to-English vo
 | 用户行为 | 处理 |
 | --- | --- |
 | 单独询问英文词/短语的中文意思、用法 | 先回答，暂存一次真实询问，无需另问要不要收录，不访问词库 |
-| 问一个中文词/短语英文怎么说 | 先回答，暂存主要英文表达；需选择多个译法时先让其选择，不全算生词 |
+| 问一个中文词/短语英文怎么说 | 先回答，暂存主要英文表达；出现值得区分的译法时另暂存近义词组，备选不全算生词；需选择主译词时先确认 |
 | 要求翻译整句、整段 | 先翻译、拆解候选，询问保留哪些；确认前不加入可同步清单 |
 | 确认全部、部分或不收录 | 仅选中项进入待同步；确认不触发写入，不收录则正式词库和待同步清单不增加候选 |
 | 又问同一表达 | 正常解释，暂存一个新查询事件；此时不检查历史、不累计或展示次数 |
@@ -34,6 +34,20 @@ description: Use when a learner asks English-to-Chinese or Chinese-to-English vo
 
 例如用户问“我总是拖到最后一刻才开始，英文怎么说”，可先翻译，再拆出 `put off`、`until the last minute`、`get started`，询问要收录哪些；此时尚未增加这些词条。
 
+## 汉译英的近义词辨析
+
+同一个中文意思出现两个或更多值得区分的英文译法，或用户明确询问它们的区别时，给简短对照：每词侧重点、适用语境、常见搭配或例句，以及不能随意替换的原因。不为每次汉译英强凑近义词，不将不同语境下的译法说成完全同义；没有语境时明确范围，不硬选唯一正确译词。
+
+例如“美化”可能涉及 beautify（改善外观）、embellish（添加装饰或叙事细节，有时带添油加醋意味）、polish（打磨、润色）。依据当前语境推荐主要表达，其余作为对照；它们不保证能在同一句子中互换。
+
+把实际给出的对照暂存在当前聊天的“待同步近义词组”，按中文主题及必要语境分组，保留词、区别、搭配/例句和原查询 pending_key。此阶段不查文件、不写入。流程讨论中的“美化”等示例不创建学习记录。用户明确不保留则不暂存。
+
+主动同步时，才读取 [记录格式](references/record-format.md)并用 [assets/synonym-template.md](assets/synonym-template.md) 保存到单词本根目录 `近义词/`，例如 `近义词/美化.md`。同主题合并，语境确实不兼容时分文件，不重复建组；保留旧辨析和用户补充，修订有分歧的说法时注明，不静默覆盖。近义词组和主词条分别核对保存结果与同步状态，重试不重复追加。
+
+近义词组是独立辨析笔记，不复制所有候选到各词性文件夹，也不增加各候选的询问次数。主词条只按用户实际询问、已推荐且确定的主译词或确认的收录范围记事件；之后用户单独问某个备选，才为该次询问增加词条事件。组中能链接的已存在词条才加内链，未单独收录的成员保留普通文字。
+
+请求统计频率时只按词条查询事件及当前可见的实际待同步查询计数，不把近义词表的成员数、示例句或组的来源引用当成额外查询。
+
 ## 主动同步：才连接与写入
 
 用户说“同步”“同步到单词本”“把这些词保存到 Obsidian”等明确写入指令时，才读 [references/connection.md](references/connection.md) 和 [references/record-format.md](references/record-format.md)。配置优先使用用户本次明确指定的目录，否则读取本 skill 的 `config.local.json` 的 `notebook_path`；没有配置再问位置。
@@ -44,7 +58,7 @@ description: Use when a learner asks English-to-Chinese or Chinese-to-English vo
 
 每个真实查询消息在每个选中词条只记一次，inquiry_count 为唯一事件数；同词两次真实询问保留两条事件。使用原查询日期，不用同步日期代替；旧记录日期、entry_id、原文和手工补充不改写。只改本次涉及的词条，不自动迁移整本词库；用户明确要求分类整理时再做迁移并核对链接。
 
-写前重读，冲突时重新合并；写后读回核对事件和次数，再标记对应待同步事件成功。部分失败只标记实际成功项，失败项保留原 ID 待重试。无权限或离线时明确尚未同步，不谎报成功。成功后简短说“已同步，新增 N 个词条、更新 M 个词条”，不逐词主动报历史次数。无待同步内容就说明，不访问词库。新聊天无法看到旧待同步内容时直说，不能从解释示例补造历史。
+写前重读，冲突时重新合并；写后读回核对事件和次数，再标记对应待同步事件成功。部分失败只标记实际成功项，失败项保留原 ID 待重试。无权限或离线时明确尚未同步，不谎报成功。成功后简短汇报实际新增/更新的词条及近义词组，不逐词主动报历史次数。检查待同步内容时包含词条、近义词组和练习，不能因单词队列为空就忽略另两项；三者都为空才说明无待同步内容、不访问词库。新聊天无法看到旧待同步内容时直说，不能从解释示例补造历史。
 
 ## 主动查询频率：只读统计
 
