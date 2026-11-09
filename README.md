@@ -18,25 +18,37 @@
 
 阅读时看到不认识的英文，直接发单词就行，比如 `intonation`。
 
-![直接发送 intonation，AI 给出中文解释和例句](examples/screenshots/word-lookup.png)
+| 截图 1 · 英译中 · 直接发送 intonation |
+| :--- |
+| ![直接发送 intonation，AI 给出中文解释和例句](examples/screenshots/word-lookup.png) |
 
 表达时想不起英语怎么说，也可以只发中文词或短语，AI 会先给解释和例句。
 
-![直接发送「一针见血的」，AI 给出 incisive、例句和常见搭配](examples/screenshots/chinese-to-english-lookup.png)
+| 截图 2 · 中译英 · 直接发送「一针见血的」 |
+| :--- |
+| ![直接发送「一针见血的」，AI 给出 incisive、例句和常见搭配](examples/screenshots/chinese-to-english-lookup.png) |
 
 你说「同步到单词本」后，词条才会按词性保存到 Obsidian。
 
-![主动同步后，AI 列出写入 Obsidian 的词条和辨析笔记](examples/screenshots/obsidian-sync.png)
+| 截图 3 · 手动同步 · 查看写入结果 |
+| :--- |
+| ![主动同步后，AI 列出写入 Obsidian 的词条和辨析笔记](examples/screenshots/obsidian-sync.png) |
 
 ### 2. 汉译英拿不准语境时，AI 帮你区分近义词的用法
 
 比如你直接发「古板的守旧的」，AI 会区分 *old-fashioned*（观念老派）、*conservative*（在这里指守旧、不愿改变）和 *rigid*（死板、不灵活），再问你更想表达哪一种。
 
-![AI 区分 old-fashioned、conservative 和 rigid，并询问更想表达哪一种](examples/screenshots/chinese-to-english-options.png)
+| 截图 4 · 选词 · 比较「古板／守旧」的几种说法 |
+| :--- |
+| ![AI 区分 old-fashioned、conservative 和 rigid，并询问更想表达哪一种](examples/screenshots/chinese-to-english-options.png) |
 
 你可以把选中的表达单独收为词条。说「同步到单词本」后，实际讨论过的近义表达会一起保存到 Obsidian 的「近义词」文件夹，方便下次遇到类似语境时再比较。
 
 比如，最后选了 *rigid*，它会单独保存为词条。另外两种说法会留在同一份辨析笔记里。
+
+| 截图 5 · Obsidian · 近义词辨析笔记 |
+| :--- |
+| ![Obsidian 里「古板、守旧与死板」的近义词辨析](examples/screenshots/obsidian-synonyms.png) |
 
 ### 3. 根据单词本生成口语练习场景
 
@@ -44,9 +56,15 @@
 
 比如，你可以练习用英语给朋友的短视频提剪辑建议。
 
+| 截图 6 · 口语练习 · 场景、目标词和预计覆盖 |
+| :--- |
+| ![点评短视频的口语任务、英文目标词和预计用到的词条](examples/screenshots/scenario-practice.png) |
+
 你可以分几段说。等你说「**讲完了**」，AI 再挑一两个地方点评，然后请你用自己的话重说。
 
-![说完后的用词反馈，以及用自己的话重说的提示](examples/screenshots/scenario-feedback.png)
+| 截图 7 · 练习反馈 · 说完后再点评 |
+| :--- |
+| ![说完后的用词反馈，以及用自己的话重说的提示](examples/screenshots/scenario-feedback.png) |
 
 平时读到或听到一个好用的词，也可以顺手用它造一两个短句，或者用简单英语复述刚听懂的内容。影子跟读、练常用场景的小脚本、和语伴聊几句，也都可以搭配着练。
 
@@ -56,7 +74,9 @@
 
 反复查到的词可以优先放进下一次练习。比如，下次直接说「用我这周查得最多的几个词，给我一个能自然用上它们的场景。」
 
-![过去一周 utility 查了两次，用户把它指定为下一次口语练习的重点](examples/screenshots/repeat-lookup.png)
+| 截图 8 · 复习 · 把反复查询的词用进下次练习 |
+| :--- |
+| ![过去一周 utility 查了两次，用户把它指定为下一次口语练习的重点](examples/screenshots/repeat-lookup.png) |
 
 ## 安装与首次配置
 
